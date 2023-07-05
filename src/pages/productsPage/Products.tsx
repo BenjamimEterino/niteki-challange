@@ -37,6 +37,7 @@ const Products = (props: Props) => {
                 page={page}
                 shape="rounded"
                 onChange={handleChange}
+                className='d-flex justify-content-center mt-3'
             />
         </Container>
     )
