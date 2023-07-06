@@ -43,10 +43,10 @@ export const ProductDetails = () => {
                         {product.img_url.map(image => (
                             <div
                                 className="border d-flex align-items-center"
-                                style={{ width: "65px", height: "70px" }}
+                                style={{ width: "65px", maxHeight: "70px" }}
                                 key={Array.prototype.indexOf(image)}
                             >
-                                <img src={image} className="card-img-top"
+                                <img src={image} height={'70px'} className="card-img-top"
                                     onClick={(e: any) => setcurrentImg(image)}
                                 />
                             </div>

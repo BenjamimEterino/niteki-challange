@@ -104,7 +104,9 @@ const Products = (props: Props) => {
 
                 {_DATA.currentData().map((v: any, index: number) => (
                     <Grid item xs={2} sm={4} md={4} key={index}>
-                        <Link to={`/details/${products.indexOf(v)}`}> <ProductCard img_url={v.img_url[0]} price={v.price} name={v.name} /></Link>
+                        <Link to={`/details/${products.indexOf(v)}`} className='text-decoration-none'>
+                            <ProductCard img_url={v.img_url[0]} price={v.price} name={v.name} />
+                        </Link>
                     </Grid>
                 ))}
             </Grid>
