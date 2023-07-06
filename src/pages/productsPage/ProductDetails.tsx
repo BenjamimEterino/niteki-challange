@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import React, { useState } from 'react'
+import React, { MouseEventHandler, ReactComponentElement, ReactElement, useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -25,7 +25,7 @@ let responsive = {
 };
 
 export const ProductDetails = () => {
-    const [quantity, setQuantity] = useState(20)
+    const [quantity, setQuantity] = useState(1)
 
     const params = useParams();
     const product = products[Number(params.id)]    
@@ -47,7 +47,7 @@ export const ProductDetails = () => {
                                 key={Array.prototype.indexOf(image)}
                             >
                                 <img src={image} height={'70px'} className="card-img-top"
-                                    onClick={(e: any) => setcurrentImg(image)}
+                                    onClick={() => setcurrentImg(image)}
                                 />
                             </div>
                         ))}
@@ -67,7 +67,12 @@ export const ProductDetails = () => {
                     <TextField type='number' label='Quantidade'
                         variant='filled'
                         defaultValue={1}
-                        onChange={(e: any) => setTotal(e.target.value * product.price)}
+                        onChange={(e: any) => {
+                            setTotal(e.target.value * product.price);
+                            setQuantity(e.target.value);
+                            alert(quantity);
+                            
+                        }}
                     />
                     <Typography gutterBottom variant="h5" component="div" className='mt-5'>
 
