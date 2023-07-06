@@ -30,6 +30,7 @@ export const ProductDetails = () => {
     const params = useParams();
     const product = products[Number(params.id)]    
     const [currentImg, setcurrentImg] = useState(product.img_url[0])
+    const [total, setTotal] = useState(product.price)
 
     return (
         <Container className='mt-5'>
@@ -54,24 +55,23 @@ export const ProductDetails = () => {
                 </Grid>
                 <Grid item xs={8}>
                     <Typography gutterBottom variant="h5" component="div">
-                        Nome do produto
+                        {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit
-                        leo eu sem convallis suscipit. Etiam faucibus nunc id ultrices consequat.
-                        Donec posuere, nisi in dapibus dignissim, orci orci posuere velit, at
-                        scelerisque lorem felis at nisl.
+                        {product.description}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="div">
-                        Preço < AttachMoneyIcon />  200
+                        Preço < AttachMoneyIcon />  {product.price}
                         <br />
                     </Typography>
                     <TextField type='number' label='Quantidade'
                         variant='filled'
+                        defaultValue={1}
+                        onChange={(e: any) => setTotal(e.target.value * product.price)}
                     />
                     <Typography gutterBottom variant="h5" component="div" className='mt-5'>
 
-                        Total < AttachMoneyIcon />  200
+                        Total < AttachMoneyIcon />  {total}
                     </Typography>
                     <Button variant="contained" color="success">
                         <AddShoppingCartIcon />Adicionar
