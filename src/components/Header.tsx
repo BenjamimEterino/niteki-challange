@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom'
 
 type Props = {}
@@ -13,7 +14,7 @@ export const Header = (props: Props) => {
                 <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
                     <Nav className="me-auto">
                         <Link className='nav-link' to="">Produtos</Link>
-                        <Link className='nav-link'  to="">Carinho de compras</Link>
+                        <Link className='nav-link'  to=""> <ShoppingCartIcon /></Link>
                     </Nav>
                    
                 </Navbar.Collapse>
