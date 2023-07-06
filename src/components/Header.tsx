@@ -13,7 +13,7 @@ export const Header = (props: Props) => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
                     <Nav className="me-auto">
-                        <Link className='nav-link' to="">Produtos</Link>
+                        <Link className='nav-link' to="/">Produtos</Link>
                         <Link className='nav-link'  to=""> <ShoppingCartIcon /></Link>
                     </Nav>
                    

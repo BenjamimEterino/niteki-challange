@@ -8,6 +8,8 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useParams } from 'react-router-dom';
+import { products } from './Products';
 
 type Props = {
     img_url: string[];
@@ -22,31 +24,13 @@ let responsive = {
     },
 };
 
-const images = [
-    {
-        pos: 0,
-        link: '/public/img/imagem.jpg'
-    },
-    {
-        pos: 1,
-        link: '/public/img/imagem2.jpg'
-    },
-    {
-        pos: 2,
-        link: '/public/img/imagem3.jpg'
-    },
-    {
-        pos: 3,
-        link: '/public/img/imagem4.jpg'
-    },
-    {
-        pos: 4,
-        link: '/public/img/imagem5.jpg'
-    },
-]
 export const ProductDetails = () => {
-    const [currentImg, setcurrentImg] = useState(images[0].link)
     const [quantity, setQuantity] = useState(20)
+
+    const params = useParams();
+    const product = products[Number(params.id)]    
+    const [currentImg, setcurrentImg] = useState(product.img_url[0])
+
     return (
         <Container className='mt-5'>
             <Grid container spacing={2} columns={16}>
@@ -55,14 +39,14 @@ export const ProductDetails = () => {
                         <img src={currentImg} className="card-img-top w-100" style={{ objectFit: "contain", height: "370px" }} />
                     </div>
                     <Carousel responsive={responsive} className="rounded p-3 my-4">
-                        {images.map(image => (
+                        {product.img_url.map(image => (
                             <div
                                 className="border d-flex align-items-center"
                                 style={{ width: "65px", height: "70px" }}
-                                key={image.pos}
+                                key={Array.prototype.indexOf(image)}
                             >
-                                <img src={image.link} className="card-img-top"
-                                    onClick={(e: any) => setcurrentImg(image.link)}
+                                <img src={image} className="card-img-top"
+                                    onClick={(e: any) => setcurrentImg(image)}
                                 />
                             </div>
                         ))}
