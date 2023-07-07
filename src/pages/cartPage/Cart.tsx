@@ -3,22 +3,24 @@ import { Col, Container, Row } from 'react-bootstrap';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useNavigate } from 'react-router-dom';
 
+type Item = {
+    name: string,
+    quantidade: number,
+    preço: number,
+    total: number,
+    img_url: string
+}
 
-
-export const Items = [{
-    name: 'Laptop',
-    quantidade: 5,
-    preço: 27000,
-    total: 30000,
-    img_url: '/img/macbook/mac1.jpg'
-}];
+export let Items: Array<Item> = [];
 
 const Cart = () => {
-    let subtotal = Items.reduce(function (previousValue, currentValue) { return previousValue + currentValue.total; }, 0);
+    const navigate = useNavigate();
+    let subtotal = Items && Items.reduce(function (previousValue, currentValue) { return previousValue + currentValue.total; }, 0);
 
     return (
-        <Container className='mt-5'>
+        Items.length > 0 ? <Container className='mt-5'>
             <Row>
                 <Col lg={8} sm={12} xs={12}>
                     <Card className='d-flex mt-2 p-2'>
@@ -89,7 +91,18 @@ const Cart = () => {
                     </Row>
                 </Col>
             </Row>
-        </Container>
+        </Container> :
+            <Container className='mt-5'>
+                <Card className='d-flex mt-2 p-2'>
+                    <Row>
+                        <Typography variant='h5'>
+                            Carrinho de compra vazio
+                        </Typography>
+                    </Row>
+                    <Row></Row>
+                </Card>
+            </Container>
+
     );
 }
 
