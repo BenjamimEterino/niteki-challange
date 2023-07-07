@@ -2,8 +2,6 @@ import { Container, Nav, Navbar } from 'react-bootstrap'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom'
 import { Badge } from '@mui/material';
-import { Items } from '../pages/cartPage/Cart';
-import { useEffect, useState } from 'react';
 
 
 export const Header = () => {

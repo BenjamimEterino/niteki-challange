@@ -3,7 +3,6 @@ import { Col, Container, Row } from 'react-bootstrap';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useNavigate } from 'react-router-dom';
 
 type Item = {
     name: string,
@@ -16,7 +15,6 @@ type Item = {
 export let Items: Array<Item> = [];
 
 const Cart = () => {
-    const navigate = useNavigate();
     let subtotal = Items && Items.reduce(function (previousValue, currentValue) { return previousValue + currentValue.total; }, 0);
 
     return (
