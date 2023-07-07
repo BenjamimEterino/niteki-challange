@@ -24,17 +24,17 @@ export const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1)
 
     const params = useParams();
-    const product = products[Number(params.id)]    
+    const product = products[Number(params.id)]
     const [currentImg, setcurrentImg] = useState(product.img_url[0])
     const [total, setTotal] = useState(product.price)
 
     return (
         <Container className='mt-5'>
-            <Grid container spacing={2} columns={{xl:16, lg:12, sm: 4}}>
+            <Grid container spacing={2} columns={{ xl: 16, lg: 12, sm: 4 }}>
                 <Grid item xl={12} lg={6} sm={4}>
                     <div className="sadow bg-white rounded">
-                        <img src={currentImg} className="card-img-top  object-fit-contain bg-dark" 
-                        style={{ objectFit: "cover", maxHeight: "250px", }} />
+                        <img src={currentImg} className="card-img-top  object-fit-contain bg-dark"
+                            style={{ objectFit: "cover", maxHeight: "250px", }} />
                     </div>
                     <Carousel responsive={responsive} className="rounded p-3 my-4">
                         {product.img_url.map(image => (
@@ -69,14 +69,19 @@ export const ProductDetails = () => {
                             setTotal(e.target.value * product.price);
                             setQuantity(e.target.value);
                         }}
-                        sx={{width: '90px'}}
+                        sx={{ width: '90px' }}
                     />
                     <Typography gutterBottom variant="subtitle1" component="div" className='mt-3'>
 
                         Total < AttachMoneyIcon />  {total}
                     </Typography>
                     <Button variant="contained" color="success"
-                    onClick={() => Items.push({img_url: product.img_url[0],quantidade: quantity,name: product.name, preço: product.price ,total: product.price * quantity})}
+                        onClick={() => {
+                            Items.push({ img_url: product.img_url[0], quantidade: quantity, name: product.name, preço: product.price, total: product.price * quantity });
+                            alert('Produto adicionado');
+                            setQuantity(1);
+                        }
+                        }
                     >
                         <AddShoppingCartIcon />Adicionar
                     </Button>

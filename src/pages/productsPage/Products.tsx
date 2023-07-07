@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid'
 import { Container } from 'react-bootstrap'
 import { ProductCard } from '../../components/ProductCard';
-import usePagination from '../../Pagination';
+import usePagination from '../../utils/Pagination';
 import { Pagination } from '@mui/material';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';

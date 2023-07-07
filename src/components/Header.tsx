@@ -9,7 +9,7 @@ export const Header = () => {
             <Container>
                 <Navbar.Brand href="/">Sua loja</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-center'>
+                <Navbar.Collapse id="responsive-navbar-nav" className=''>
                     <Nav className="me-auto">
                         <Link className='nav-link' to="/">Produtos</Link>
                         <Link className='nav-link'  to="/cart"> <ShoppingCartIcon /></Link>

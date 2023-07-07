@@ -24,24 +24,24 @@ const Cart = () => {
                     <Card className='d-flex mt-2 p-2'>
                         <Row>
                             <Typography variant='h5'>
-                                Carrinho de compra
+                                Carrinho de compra ({Items.length})
                             </Typography>
                         </Row>
                         <Row></Row>
                     </Card>
                     {Items.map(item => (
-                        <Card className='d-flex mt-2 p-2 h-75'>
+                        <Card className='d-flex mt-2 p-2'>
                             <Col className='d-flex flex-start w-25'>
-                                <img src={item.img_url} height={140} width={120} />
+                                <img src={item.img_url} height={140} width={120} className='object-fit-contain ' />
                             </Col>
                             <Col className='d-flex flex-column align-items-start'>
                                 {item.name}
                                 <br />
-                              <span className='mt-2'><AttachMoneyIcon /> {item.preço}</span>  
+                                <span className='mt-2'><AttachMoneyIcon /> {item.preço}</span>
                             </Col>
                             <Col className='d-flex flex-column align-items-end justify-content-between'>
                                 <Button
-
+                                    className='text-danger'
                                     onClick={() => {
                                         Items.splice(Array.prototype.indexOf(item), 1)
                                         console.log(Items);
@@ -82,7 +82,7 @@ const Cart = () => {
                     <div className='d-flex justify-content-evenly'><p>IVA</p> {subtotal * 0.16}</div>
                     <div className='d-flex justify-content-evenly'><p>Total</p> {subtotal * 1.16}</div>
                     <Row className='mt-3'>
-                        <Button variant="contained" color="error"
+                        <Button variant="contained" color="success"
                         >
                             <ShoppingCartCheckoutIcon />Comprar
                         </Button>
