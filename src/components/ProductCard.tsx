@@ -16,18 +16,19 @@ type Products = {
 export const ProductCard = (props: Products) => {
 
     return (
-        <Card sx={{ maxWidth: 250 }} className='mt-5'>
+        <Card sx={{ maxWidth: '100%' }} className='mt-5'>
             <CardMedia
                 component="img"
                 height="230"
                 image={props.img_url}
                 alt="Paella dish"
+                className='card-image object-fit-contain bg-dark'
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     < AttachMoneyIcon/>  {props.price}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body1" color="text.primary">
                     {props.name}
                 </Typography>
             </CardContent>

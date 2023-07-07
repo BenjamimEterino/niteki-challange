@@ -3,10 +3,9 @@ import { Container } from 'react-bootstrap'
 import { ProductCard } from '../../components/ProductCard';
 import usePagination from '../../Pagination';
 import { Pagination } from '@mui/material';
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-type Props = {}
+import './Product.css'
 
 const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit leo'
 
@@ -18,19 +17,19 @@ export const products = [
         img_url: ['/img/bag/bag1.jpg', '/img/bag/bag2.jpg']
     },
     {
-        name: 'iPhone',
+        name: 'iPhone XS',
         price: 2300,
         description: description,
         img_url: ['/img/iphone/iphone1.jpg', '/img/iphone/iphone2.jpg', '/img/iphone/iphone3.jpg']
     },
     {
-        name: 'Iron',
+        name: 'Ferro de Engomar',
         price: 1400,
         description: description,
         img_url: ['/img/iron/iron1.jpg', '/img/iron/iron2.jpg']
     },
     {
-        name: 'White Keyborad',
+        name: 'Teclado Wireless Branco',
         price: 1100,
         description: description,
         img_url: ['/img/keyboard/key1.jpg', '/img/keyboard/key2.jpg', '/img/keyboard/key3.jpg']
@@ -48,7 +47,7 @@ export const products = [
         img_url: ['/img/monitor/mon1.jpg', '/img/monitor/mon2.jpg']
     },
     {
-        name: 'IP Phone',
+        name: 'Dell IP Phone',
         price: 5200,
         description: description,
         img_url: ['/img/phone/phone1.jpg', '/img/phone/phone2.jpg']
@@ -85,25 +84,26 @@ export const products = [
     },
 ]
 
-
-
-const Products = (props: Props) => {
+const Products = () => {
     let [page, setPage] = useState(1);
-    const PER_PAGE = 6;
+    const PER_PAGE = 8;
 
     const count = Math.ceil(products.length / PER_PAGE);
     const _DATA = usePagination(products, PER_PAGE);
 
-    const handleChange = (e: any, p: number) => {
+    const handleChange = (_e: any, p: number) => {
         setPage(p);
         _DATA.jump(p);
     };
     return (
         <Container className='mt-5'>
-            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid container
+                spacing={{ xs: 2, md: 3 }}
+                columns={{ xs: 1, sm: 8, md: 12, lg: 12, xl: 12 }}
+            >
 
                 {_DATA.currentData().map((v: any, index: number) => (
-                    <Grid item xs={2} sm={4} md={4} key={index}>
+                    <Grid item xs={1} sm={4} md={3} lg={3} xl={2} key={index} className='grid-item'>
                         <Link to={`/details/${products.indexOf(v)}`} className='text-decoration-none'>
                             <ProductCard img_url={v.img_url[0]} price={v.price} name={v.name} />
                         </Link>

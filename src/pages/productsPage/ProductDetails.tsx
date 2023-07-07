@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import React, { MouseEventHandler, ReactComponentElement, ReactElement, useState } from 'react'
+import { useState } from 'react'
 import { Container } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -10,12 +10,8 @@ import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useParams } from 'react-router-dom';
 import { products } from './Products';
+import { Items } from '../cartPage/Cart';
 
-type Props = {
-    img_url: string[];
-    name: string;
-    price: number;
-}
 
 let responsive = {
     desktop: {
@@ -34,10 +30,11 @@ export const ProductDetails = () => {
 
     return (
         <Container className='mt-5'>
-            <Grid container spacing={2} columns={16}>
-                <Grid item xs={6}>
-                    <div className="shadow bg-white rounded">
-                        <img src={currentImg} className="card-img-top w-100" style={{ objectFit: "contain", height: "370px" }} />
+            <Grid container spacing={2} columns={{xl:16, lg:12, sm: 4}}>
+                <Grid item xl={12} lg={6} sm={4}>
+                    <div className="sadow bg-white rounded">
+                        <img src={currentImg} className="card-img-top  object-fit-contain bg-dark" 
+                        style={{ objectFit: "cover", maxHeight: "250px", }} />
                     </div>
                     <Carousel responsive={responsive} className="rounded p-3 my-4">
                         {product.img_url.map(image => (
@@ -53,32 +50,34 @@ export const ProductDetails = () => {
                         ))}
                     </Carousel>
                 </Grid>
-                <Grid item xs={8}>
-                    <Typography gutterBottom variant="h5" component="div">
+                <Grid item xl={4} lg={6}>
+                    <Typography gutterBottom variant="h5" component="div" className='fw-bold'>
                         {product.name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         {product.description}
                     </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography gutterBottom variant="subtitle1" component="div" className='mt-5'>
                         Preço < AttachMoneyIcon />  {product.price}
                         <br />
                     </Typography>
                     <TextField type='number' label='Quantidade'
                         variant='filled'
                         defaultValue={1}
+                        size='small'
                         onChange={(e: any) => {
                             setTotal(e.target.value * product.price);
                             setQuantity(e.target.value);
-                            alert(quantity);
-                            
                         }}
+                        sx={{width: '90px'}}
                     />
-                    <Typography gutterBottom variant="h5" component="div" className='mt-5'>
+                    <Typography gutterBottom variant="subtitle1" component="div" className='mt-3'>
 
                         Total < AttachMoneyIcon />  {total}
                     </Typography>
-                    <Button variant="contained" color="success">
+                    <Button variant="contained" color="success"
+                    onClick={() => Items.push({img_url: product.img_url[0],quantidade: quantity,name: product.name, preço: product.price ,total: product.price * quantity})}
+                    >
                         <AddShoppingCartIcon />Adicionar
                     </Button>
 
